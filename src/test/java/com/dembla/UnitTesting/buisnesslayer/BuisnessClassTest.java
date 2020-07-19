@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class BuisnessClassTest {
-
 
     @Test
     void calculateSum_basicScanerio() {
