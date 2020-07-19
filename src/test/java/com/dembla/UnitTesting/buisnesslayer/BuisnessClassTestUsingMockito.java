@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 public class BuisnessClassTestUsingMockito {
 
     @InjectMocks
-    BuisnessClass buisnessClass = new BuisnessClass() ;
+    BuisnessClass buisnessClass ;
 
     @Mock
     DataStore dataStore ;             // = mock(DataStore.class) ;
