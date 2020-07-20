@@ -6,6 +6,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -95,6 +96,47 @@ public class ListMockTest {
         List<String> allValues = captor.getAllValues() ;
         assertEquals("someString1",allValues.get(0));
         assertEquals("someString2",allValues.get(1));
+
+    }
+
+    @Test
+    public  void mocking(){
+
+        ArrayList arrayListmock = mock(ArrayList.class) ;
+        System.out.println( arrayListmock.get(0) ); // null
+        System.out.println(arrayListmock.size() );  // 0
+        System.out.println(arrayListmock.add( "Test1") );
+        System.out.println(arrayListmock.add( "Test2"))  ;
+
+        // Mock does not retain behaviour (code) of the Original class !
+        System.out.println( arrayListmock.size() );  // This is 0
+
+        when(arrayListmock.size()).thenReturn(5) ;
+        System.out.println( arrayListmock.size() ); // 5
+
+    }
+
+     @Test
+    public  void Spying(){
+        ArrayList arrayListSpy = spy(ArrayList.class) ;
+        arrayListSpy.add("Test") ;
+        System.out.println( arrayListSpy.get(0) ); // Exception if not add
+        System.out.println(arrayListSpy.size() );  // 1
+        arrayListSpy.add( "Test1") ;
+        arrayListSpy.add( "Test2") ;
+
+        // Spy does retain behaviour (code) of the Original class !
+        System.out.println( arrayListSpy.size() );  // This is 3 not 0
+
+        when(arrayListSpy.size()).thenReturn(5) ;
+        System.out.println( arrayListSpy.size() ); // 5
+
+//        Remember
+          arrayListSpy.add("I am at 4 but it show size as 5") ;
+        System.out.println(arrayListSpy.size()); // 5
+
+         // Verify
+         verify(arrayListSpy).add("I am at 4 but it show size as 5") ;
 
     }
 
