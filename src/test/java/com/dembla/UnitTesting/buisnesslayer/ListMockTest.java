@@ -7,6 +7,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,4 +40,11 @@ public class ListMockTest {
     }
 
 
+    @Test
+    public void returnWithGenricType(){
+        when(mock.get(anyInt())).thenReturn("mayank") ;
+        assertEquals("mayank",mock.get(0));
+        assertEquals("mayank",mock.get(5));
+
+    }
 }
