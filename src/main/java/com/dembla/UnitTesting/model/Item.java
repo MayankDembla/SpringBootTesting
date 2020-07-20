@@ -17,7 +17,7 @@ public class Item {
     private String name ;
 
     @Id
-    private int id ;
+    private int id = 1;
     private int price ;
     private  int quantity ;
 
@@ -26,7 +26,8 @@ public class Item {
 
     public Item(String test, int i, int i1) {
         this.name = test ;
-        this.id = i ;
+        this.price = i ;
         this.quantity = i1 ;
+        this.id = id++ ;
     }
 }

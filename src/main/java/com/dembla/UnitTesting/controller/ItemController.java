@@ -27,12 +27,7 @@ public class ItemController {
     @GetMapping("/all-items")
     public List<Item> retrievallItem(){
 
-        List<Item> items = itemService.retrieveAllElements() ;
-
-        for(Item val : items)
-            val.setValue(val.getPrice() * val.getQuantity());
-
-        return items ;
+        return itemService.retrieveAllElements() ;
     }
 
 

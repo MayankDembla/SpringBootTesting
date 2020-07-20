@@ -11,14 +11,20 @@ import java.util.List;
 public class ItemService {
 
     @Autowired
-    ItemRepository itemRepository ;
+    private ItemRepository itemRepository ;
 
     public Item retrievehardCodedItemname(){
         return  new Item("Test",10,100) ;
     }
 
     public List<Item> retrieveAllElements(){
-        return  itemRepository.findAll() ;
+
+        List<Item> items = itemRepository.findAll() ;
+
+        for(Item val : items)
+            val.setValue(val.getPrice() * val.getQuantity());
+
+        return items ;
     }
 
 }
