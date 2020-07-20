@@ -8,14 +8,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ListMockTest {
 
 
     @Mock
-    List mock ;
+    List<String> mock ;
 
     @Test
     public void testbasic(){
@@ -45,6 +45,22 @@ public class ListMockTest {
         when(mock.get(anyInt())).thenReturn("mayank") ;
         assertEquals("mayank",mock.get(0));
         assertEquals("mayank",mock.get(5));
-
     }
+
+   // Verify Method under Test
+   // Check if a Specific method is Called with a Specific Value on a Mock.
+   @Test
+    public void verificationBasics(){
+        String value1 = mock.get(0) ;
+        String value2 = mock.get(1) ;
+
+        // Verify
+       verify(mock).get(0) ;
+       verify(mock, times(2)).get(anyInt()) ;
+       verify(mock, atLeast(1)).get(anyInt()) ;
+       verify(mock, atLeastOnce()).get(anyInt()) ;
+       verify(mock, atMost(2)).get(anyInt()) ;
+       verify(mock, never()).get(2) ;
+   }
+
 }
