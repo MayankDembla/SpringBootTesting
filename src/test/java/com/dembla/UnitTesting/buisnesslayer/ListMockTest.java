@@ -2,6 +2,7 @@ package com.dembla.UnitTesting.buisnesslayer;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -51,6 +52,7 @@ public class ListMockTest {
    // Check if a Specific method is Called with a Specific Value on a Mock.
    @Test
     public void verificationBasics(){
+        // SUT
         String value1 = mock.get(0) ;
         String value2 = mock.get(1) ;
 
@@ -62,5 +64,20 @@ public class ListMockTest {
        verify(mock, atMost(2)).get(anyInt()) ;
        verify(mock, never()).get(2) ;
    }
+
+
+   // Capturing argument passed to the method
+
+    @Test
+    public void argumentCapturing(){
+        // SUT - System Under Test
+        mock.add("SomeString") ; // need to find out what Argument is passed
+
+        // Verification
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class) ;
+        verify(mock).add(captor.capture()) ; // verify if this method is called ?
+
+        assertEquals("SomeString",captor.getValue());
+    }
 
 }
