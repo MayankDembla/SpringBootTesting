@@ -4,6 +4,8 @@ import com.dembla.UnitTesting.services.DataStore;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service
 @NoArgsConstructor
 public class BuisnessClass {
@@ -42,14 +44,13 @@ public class BuisnessClass {
    //   ########## Basic API's  hard Fixed Data ########## //
 
    public int calculateSum(int[] data){
-       int sum = 0 ;
-       for(int value : data ){
-           sum += value ;
-       }
-       return sum ;
+
+       return Arrays.stream(data).reduce(Integer::sum).orElse(0) ;
+
    }
 
    public int product(int[] input){
+
        int product = 1  ;
 
        for(int val : input ){
